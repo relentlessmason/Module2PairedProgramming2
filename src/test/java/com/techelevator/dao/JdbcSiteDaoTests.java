@@ -2,8 +2,10 @@ package com.techelevator.dao;
 
 import com.techelevator.model.Site;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -24,11 +26,19 @@ public class JdbcSiteDaoTests extends BaseDaoTests {
         assertEquals(2,sites.size());
     }
 
+    @Test
     public void getAvailableSites_Should_ReturnSites() {
+        List<Site> availableSites = dao.getAvailableSites(1);
+
+        assertEquals(2, availableSites.size());
 
     }
 
+    @Test
     public void getAvailableSitesDateRange_Should_ReturnSites() {
+        List<Site> futureSite = dao.getFutureReservations(1, LocalDate.now().plusDays(3), LocalDate.now().plusDays(5));
+
+        assertEquals(2, futureSite.size());
 
     }
 }
